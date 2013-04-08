@@ -1,0 +1,5 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>你可以通过下面的链接确认你的帐户电子邮件:</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

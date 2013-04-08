@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  num: 1
+  carrier: MyString
+  warehouse: MyString
+
+two:
+  num: 1
+  carrier: MyString
+  warehouse: MyString

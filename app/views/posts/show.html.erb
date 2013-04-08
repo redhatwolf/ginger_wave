@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Show My Blog</title>
+  </head>
+  <body>
+    <div id="content">
+    <table>
+<p id="notice"><%= notice %></p>
+
+<tr>
+  <td>作者：</td>
+  <td><%= @post.name %></td>
+</tr>
+
+<tr>
+  <td>标题：</td>
+  <td><%= @post.title %></td>
+</tr>
+
+<tr>
+  <td>内容：</td>
+  <td><%= @post.content %></td>
+</tr>
+<tr>
+  <td>创建时间：</td>
+  <td><%= @post.created_at %></td>
+</tr>
+<tr>
+  <td>图片：</td>
+  <td> <%= image_tag(@post.avatar_url) if @post.avatar? %></td>
+</tr>
+<tr>
+  <td>标签：</td>
+  <td><%= join_tags(@post) %></td>
+</tr>
+<tr>
+<td>评论列表：</td>
+<td><%=render @post.comments%></td>
+</tr>
+<tr>
+    
+<td>评论：</td>
+<td><%=render :partial => "comments/form"%></td>
+</tr> 
+<tr>
+  <td></td>
+  <td><h3><%= link_to '修改', edit_post_path(@post) %> |
+  <%= link_to '返回', posts_path(current_user,:user_id => current_user) %></h3></td>
+</tr>
+</table>
+    </div>
+  </body>
+</html>
+

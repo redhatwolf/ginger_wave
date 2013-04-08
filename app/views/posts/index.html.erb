@@ -1,0 +1,51 @@
+<script>
+function toggle_checkall(field_name, state) {
+  var checkboxes = document.getElementsByTagName('input');
+  var count = checkboxes.length;
+  for (var i = 0; i < count; i++) {
+    if (checkboxes[i].type == "checkbox"
+        && checkboxes[i].name == field_name + "_ids[]") {
+      checkboxes[i].checked = state;
+    }
+  }
+}
+</script>
+<p class="post-job clearfix"><%= link_to t("post_a_new_blog"), new_post_path, :title => "Post a new Blog" %></p>
+<div>
+  <%= form_tag destroy_multiple_posts_path, :method => :delete do %>  
+  <div class='selected'>  
+    <%#= submit_tag "删除选中项" %>   
+  </div>  
+<% end %>
+<table cellpadding="5" cellspacing="0" class ="list">
+  <thread>
+  <tbody>
+  <tr>
+    <th><input type="checkbox" onclick="toggle_checkall('post', this.checked);" /></th>
+    <th><%= t("post.name") %></th>
+    <th><%= t("post.title") %></th>
+    <th><%= t("post.content") %></th>
+    <th><%= t("post.operation") %></th>
+  </tr>
+<% @posts.each do |post| %>
+  <tr class="<%= cycle("odd", "even", :name => "row_class") -%>" style="color:<%= cycle("green") -%>">
+    <td><%= check_box_tag  'post_ids[]', post.id %></td>
+    <td><div style="width:80px;height:25px;overflow:hidden;text-align:center;"><%= post.name %></div></td>
+    <td><div style="width:90px;height:25px;overflow:hidden;"><%= post.title %></div></td>
+    <td><div style="width:250px;height:20px;overflow:hidden;"><%= post.content %></div></td>
+    <td><div style="width:250px;height:20px;text-align:center;"><%= link_to '详情', post %><%= " " %><%= link_to '修改', edit_post_path(post) %><%= " " %><%= link_to '删除', post_path(post,:page=>params[:page]), :method => :delete, :data => { :confirm => '确定删除该博文？' } %></div></td>
+  </tr>
+<% end %>
+  </tbody>
+    </thread>
+</table>
+</div>
+<br />
+  
+<div class="digg_pagination">  
+  <div clas="page_info">  
+    <%= page_entries_info @posts %>  
+  </div>  
+  <%= will_paginate @posts, :container => false %>  
+</div> 
+<span class="paperclip"></span>

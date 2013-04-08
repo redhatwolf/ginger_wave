@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New My data</title>
+  </head>
+  <body>
+    <div id="content">
+    <table>
+      <tr><td></td><td><h1>New data</td></h1></tr>
+      <%= render 'form' %>
+      <tr><td></td><td><h3><%= link_to '返回', create_dos_path(current_user, :user_id => current_user) %></td></h3></tr>
+      </table>
+
+    </div>
+  </body>
+</html>

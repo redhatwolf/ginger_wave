@@ -1,0 +1,51 @@
+<h1>Listing users</h1>
+<script>
+function toggle_checkall(field_name, state) {
+  var checkboxes = document.getElementsByTagName('input');
+  var count = checkboxes.length;
+  for (var i = 0; i < count; i++) {
+    if (checkboxes[i].type == "checkbox"
+        && checkboxes[i].name == field_name + "_ids[]") {
+      checkboxes[i].checked = state;
+    }
+  }
+}
+</script>
+
+<div>
+  <div class='selected'>  
+  </div>  
+<table cellpadding="5" cellspacing="0" class ="list">
+  <tr>
+    <td><input type="checkbox" onclick="toggle_checkall('post', this.checked);" /></td>
+  <td>邮箱号</td>
+    <td>角色</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= check_box_tag  'post_ids[]', user.id %></td>
+    <td><%= user.email %></td>
+    <td><%= user.role %></td>
+    <td><%= link_to '详情', user %></td>
+    <td>
+      <%# if can? :update,post %>
+        <%= link_to '修改', edit_user_path(user) %>
+        <%#end%>
+    </td>
+    <td><%= link_to '删除', user_path(user,:page=>params[:page]), :method => :delete, :data => { :confirm => '确定删除该博文？' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+  
+<div class="digg_pagination">  
+  <div clas="page_info">  
+    <%= page_entries_info @users %>  
+  </div>  
+  <%= will_paginate @users, :container => false %>  
+</div> 

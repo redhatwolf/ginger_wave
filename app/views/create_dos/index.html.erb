@@ -1,0 +1,54 @@
+<h1>Listing records</h1>
+<script>
+function toggle_checkall(field_name, state) {
+  var checkboxes = document.getElementsByTagName('input');
+  var count = checkboxes.length;
+  for (var i = 0; i < count; i++) {
+    if (checkboxes[i].type == "checkbox"
+        && checkboxes[i].name == field_name + "_ids[]") {
+      checkboxes[i].checked = state;
+    }
+  }
+}
+</script>
+
+<div>
+  <div class='selected'>  
+  </div>  
+<table cellpadding="5" cellspacing="0" class ="list">
+  <tr>
+    <td><input type="checkbox" onclick="toggle_checkall('do', this.checked);" /></td>
+  <td>num</td>
+    <td>carrier</td>
+    <td>ware_house</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+<% @dos.each do |dos| %>
+  <tr>
+    <td><%= check_box_tag  'post_ids[]', dos.id %></td>
+    <td><%= dos.num %></td>
+    <td><%= dos.carrier %></td>
+    <td><%= dos.warehouse %></td>
+    <td><%= link_to '详情', dos %></td>
+    <td>
+      <%# if can? :update,post %>
+        <%= link_to '修改', edit_create_do_path(dos) %>
+        <%#end%>
+    </td>
+    <td><%= link_to '删除', create_do_path(dos,:page=>params[:page]), :method => :delete, :data => { :confirm => '确定删除该记录？' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+  
+<div class="digg_pagination">  
+  <div clas="page_info">  
+    <%= page_entries_info @dos %>  
+  </div>  
+  <%= will_paginate @dos, :container => false %>  
+</div> 
+<h2><%= link_to '新增', new_create_do_path %></h2>

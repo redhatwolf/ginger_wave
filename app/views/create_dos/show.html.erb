@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Show DOS</title>
+  </head>
+  <body>
+    <div id="content" style="alignment-adjust: central">
+    <table>
+<p id="notice"><%= notice %></p>
+
+<tr>
+  <td>类型：</td>
+  <td><%= @dos.num %></td>
+</tr>
+
+<tr>
+  <td>承运商：</td>
+  <td><%= @dos.carrier %></td>
+</tr>
+
+<tr>
+  <td>仓库：</td>
+  <td><%= @dos.warehouse %></td>
+</tr>
+     
+<tr>
+  <td></td>
+  <td><h3><%= link_to '修改', edit_create_do_path(@dos) %> |
+<%= link_to '返回', create_dos_path %></h3></td>
+</tr>
+</table>
+
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Show Users</title>
+  </head>
+  <body>
+    <div id="content" style="alignment-adjust: central">
+    <table>
+<p id="notice"><%= notice %></p>
+
+<tr>
+  <td>邮箱：</td>
+  <td><%= @users.email %></td>
+</tr>
+
+<tr>
+  <td>角色：</td>
+  <td><%= @users.role %></td>
+</tr>
+
+<tr>
+  <td>创建时间：</td>
+  <td><%= @users.created_at %></td>
+</tr>
+     
+<tr>
+  <td></td>
+  <td><h3><%= link_to '修改', edit_user_path(@users) %> |
+<%= link_to '返回', users_path %></h3></td>
+</tr>
+</table>
+
+    </div>
+  </body>
+</html>
+

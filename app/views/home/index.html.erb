@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome My Blog</title>
+    <style type="text/css" media="screen">    
+    </style>
+    <script type="text/javascript">
+      function about() {
+        info = document.getElementById('about-content');
+        if (window.XMLHttpRequest)
+          { xhr = new XMLHttpRequest(); }
+        else
+          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
+        xhr.open("GET","rails/info/properties",false);
+        xhr.send("");
+        info.innerHTML = xhr.responseText;
+        info.style.display = 'block'
+      }
+    </script>
+    
+  </head>
+  <body>
+    <div id="page">
+      <div id="content">
+        <div id="about">
+          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
+          <h3><%=@time%></h3>
+          <div id="about-content" style="display: none"></div>
+        </div>
+        
+        <div id="getting-started">
+          <h1>Welcome <%= link_to "My Blog",posts_path(current_user, :user_id => current_user) %></h1>
+          <h1>Welcome <%= link_to "用户管理",users_path %></h1>
+          <h1>Welcome <%= link_to "数据库管理",create_dos_path %></h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

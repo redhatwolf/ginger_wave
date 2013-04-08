@@ -1,0 +1,51 @@
+<%@post.tags.build%>
+<%= form_for(@post) do |post_form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <tr>
+      <td><%= post_form.label :name, t(@post.name)  %></td>
+      <td><%= post_form.text_field :name,:value=>'somebody'  %></td>
+    </tr>
+  </div>
+  <div class="field">
+    <tr>
+      <td><%= post_form.label '标题：' %></td>
+      <td><%= post_form.text_field  :title, :onclick => 'WdatePicker()',:class => 'Wdate' %> </td>        
+    </tr>
+  </div>
+  <div class="field">
+    <tr>
+      <td><%= post_form.label '内容：' %></td>
+      <td><%= post_form.text_area :content %></td>
+    </tr>
+    <tr>
+      <%= image_tag(@post.avatar_url) if @post.avatar? %>
+      <td><%= post_form.label '图片：' %></td>
+      <td><%= post_form.file_field :avatar, :class=>"file_input" %></td>     
+    </tr>
+  </div>
+  <div>
+    <tr>
+      <td><h2>标签列：</h2></td>
+      <td><%= render :partial => 'tags/form',
+                      :locals => {:form => post_form} %></td>
+    <tr>
+  </div>
+  <div class="actions">
+    <tr>
+      <td></td>
+      <td><%= post_form.submit :class => "submit button" %></td>
+    </tr>
+  </div>
+<% end %>

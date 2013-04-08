@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Show My Blog</title>
+  </head>
+  <body>
+    <div id="content">
+    <table>
+      <tr>
+        <td></td>
+        <td><h1>Editing post</td></h1>
+      </tr>
+           <%= render 'form' %>
+    <tr>
+      <td></td>
+      <td><h3><%= link_to '详情', @post %> |
+             <%= link_to '返回', posts_path(current_user,:user_id => current_user) %></td></h3>
+    </tr>
+</table>
+
+
+    </div>
+  </body>
+</html>
+
+
+
+

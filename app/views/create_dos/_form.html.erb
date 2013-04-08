@@ -1,0 +1,36 @@
+<%= form_for(@dos) do |do_form| %>
+<% if @dos.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@dos.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <ul>
+      <% @dos.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+  </ul>
+ </div>
+  <% end %>
+  <div class="field">
+    <tr>
+      <td><%= do_form.label '类型'  %></td>
+      <td><%= do_form.text_field :num  %></td>
+    </tr>
+  </div>
+  <div class="field">
+    <tr>
+      <td><%= do_form.label '承运商'  %></td>
+      <td><%= do_form.text_field :carrier  %></td>
+    </tr>
+  </div>
+  <div class="field">
+    <tr>
+      <td><%= do_form.label '仓库'  %></td>
+      <td><%= do_form.text_field :warehouse  %></td>
+    </tr>
+  </div>
+  <div class="actions">
+    <tr>
+      <td></td>
+      <td><%= do_form.submit %></td>
+    </tr>
+  </div>
+<%end%>
